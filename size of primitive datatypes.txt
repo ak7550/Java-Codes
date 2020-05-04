@@ -1,0 +1,17 @@
+Java's Primitive Data Types
+
+boolean: 1-bit. May take on the values true and false only.
+
+byte: 1 signed byte (two's complement). Covers values from -128 to 127.
+
+short: 2 bytes, signed (two's complement), -32,768 to 32,767
+
+int: 4 bytes, signed (two's complement). -2,147,483,648 to 2,147,483,647.
+
+long: 8 bytes signed (two's complement). Ranges from -9,223,372,036,854,775,808 to +9,223,372,036,854,775,807.
+
+float: 4 bytes, IEEE 754. Covers a range from 1.40129846432481707e-45 to 3.40282346638528860e+38 (positive or negative).
+
+double: 8 bytes IEEE 754. Covers a range from 4.94065645841246544e-324d to 1.79769313486231570e+308d (positive or negative).
+
+char: 2 bytes, unsigned, Unicode, 0 to 65,535

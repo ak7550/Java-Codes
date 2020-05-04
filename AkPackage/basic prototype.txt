@@ -1,0 +1,4 @@
+some basic array functions like: 
+    
+    sorting all the elements in the array
+    find the index of a specific element

@@ -1,0 +1,7 @@
+1) code to calculate the difference between two dates.
+2) Study a little bit of wrapper classes and extend theit functionalities
+3) Study a little bit of Array, Arraylist, List, Collections, swap reverse and many more
+4) create an array function that's gonna take a atring and return the values as number 
+    separating them via comma into an array.
+5) Must include an method in an array to print all the elements present inside of an array
+    no matter what wrapper class it's belonging to.
