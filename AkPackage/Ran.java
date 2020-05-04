@@ -19,6 +19,13 @@ public class Ran extends Random {
         return getString(100);
     }
 
+    public String getStringFixedLength(int length) {
+        StringBuilder str = new StringBuilder(length);
+        for (int i = 0; i < length; i++) // so that we will never get a null value.
+            str.append(s.charAt(rand.nextInt(s.length())));
+        return str.toString();
+    }
+
     public LocalDate getRandomDate() {
         return getRandomDate(2000);
     }
@@ -37,6 +44,6 @@ public class Ran extends Random {
     }
 
     public String getRandomEmail() {
-        return getString(20) + "@" + getString(8) + "." + getString(5);
+        return getString(20) + "@" + getString(8) + "." + getStringFixedLength(3);
     }
 }

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - akPackageTest",
+            "request": "launch",
+            "mainClass": "akPackageTest",
+            "projectName": "Java_b6f80386"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - ass23",
             "request": "launch",
             "mainClass": "ass23",
