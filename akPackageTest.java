@@ -1,4 +1,4 @@
-import AkPackage.Ran;
+import AkPackage.*;
 // all the akpackage testing will be done here
 public class akPackageTest {
     public static void main(String[] args) {
