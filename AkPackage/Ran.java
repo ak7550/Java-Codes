@@ -6,6 +6,8 @@ import java.time.*;
 public class Ran extends Random {
     private static final long serialVersionUID = 1L;
     String s = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+    String smallletters = "qwertyuiopasdfghjklzxcvbnm", specialSymbols = "~!@#$%^&*()_+`={}[]<>,.?/|";
+    String numbers = "1234567890", capitalLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
     Random rand = new Random();
 
     public final String getString(int max) {
@@ -15,11 +17,18 @@ public class Ran extends Random {
         return str.toString();
     }
 
+    public final String getString(int max, String s) {
+        StringBuilder str = new StringBuilder(max);
+        for (int i = 0; i < rand.nextInt(max - 1) + 1; i++) // so that we will never get a null value or a 0 value
+            str.append(s.charAt(rand.nextInt(s.length())));
+        return str.toString();
+    }
+
     public final String getString() {
         return getString(100);
     }
 
-    public String getStringFixedLength(int length) {
+    public String getStringFixedLength(int length, String s) {
         StringBuilder str = new StringBuilder(length);
         for (int i = 0; i < length; i++) // so that we will never get a null value.
             str.append(s.charAt(rand.nextInt(s.length())));
@@ -44,6 +53,7 @@ public class Ran extends Random {
     }
 
     public String getRandomEmail() {
-        return getString(20) + "@" + getString(8) + "." + getStringFixedLength(3);
+        return getStringFixedLength(1, smallletters) + getString(20, (smallletters + numbers)) + "@" + getStringFixedLength(6, smallletters)
+                + "." + getStringFixedLength(3, smallletters);
     }
 }
