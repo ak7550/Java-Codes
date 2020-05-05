@@ -11,17 +11,11 @@ public class Ran extends Random {
     Random rand = new Random();
 
     public final String getString(int max) {
-        StringBuilder str = new StringBuilder(max);
-        for (int i = 0; i < rand.nextInt(max - 1) + 1; i++) // so that we will never get a null value.
-            str.append(s.charAt(rand.nextInt(s.length())));
-        return str.toString();
+        return getStringFixedLength(nextInt(max), s);
     }
 
     public final String getString(int max, String s) {
-        StringBuilder str = new StringBuilder(max);
-        for (int i = 0; i < rand.nextInt(max - 1) + 1; i++) // so that we will never get a null value or a 0 value
-            str.append(s.charAt(rand.nextInt(s.length())));
-        return str.toString();
+        return getStringFixedLength(nextInt(max), s);
     }
 
     public final String getString() {
@@ -53,7 +47,7 @@ public class Ran extends Random {
     }
 
     public String getRandomEmail() {
-        return getStringFixedLength(1, smallletters) + getString(20, (smallletters + numbers)) + "@" + getStringFixedLength(6, smallletters)
-                + "." + getStringFixedLength(3, smallletters);
+        return getStringFixedLength(1, smallletters) + getString(20, (smallletters + numbers)) + "@"
+                + getStringFixedLength(6, smallletters) + "." + getStringFixedLength(3, smallletters);
     }
 }
