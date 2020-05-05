@@ -8,7 +8,6 @@ public class Ran extends Random {
     String s = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
     String smallletters = "qwertyuiopasdfghjklzxcvbnm", specialSymbols = "~!@#$%^&*()_+`={}[]<>,.?/|";
     String numbers = "1234567890", capitalLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
-    Random rand = new Random();
 
     public final String getString(int max) {
         return getStringFixedLength(nextInt(max), s);
@@ -25,7 +24,7 @@ public class Ran extends Random {
     public String getStringFixedLength(int length, String s) {
         StringBuilder str = new StringBuilder(length);
         for (int i = 0; i < length; i++) // so that we will never get a null value.
-            str.append(s.charAt(rand.nextInt(s.length())));
+            str.append(s.charAt(nextInt(s.length())));
         return str.toString();
     }
 
@@ -35,15 +34,15 @@ public class Ran extends Random {
 
     public LocalDate getRandomDate(int range) {
         LocalDate temp = LocalDate.now();
-        int randomYear = range + rand.nextInt(temp.getYear() - range), randomMonth = rand.nextInt(11) + 1;
+        int randomYear = range + nextInt(temp.getYear() - range), randomMonth = nextInt(11) + 1;
         Month mn = Month.of(randomMonth);
         temp = temp.withYear(randomYear);
-        int dayOfMonth = rand.nextInt(mn.length(temp.isLeapYear()));
+        int dayOfMonth = nextInt(mn.length(temp.isLeapYear()));
         return LocalDate.of(randomYear, randomMonth, dayOfMonth);
     }
 
     public int nextInt(int lowerBound, int upperBound) {
-        return rand.nextInt(upperBound - lowerBound) + lowerBound;
+        return nextInt(upperBound - lowerBound) + lowerBound;
     }
 
     public String getRandomEmail() {
