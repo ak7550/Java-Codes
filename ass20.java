@@ -2,7 +2,7 @@
 // https://itnext.io/how-to-synchronize-multiple-threads-in-java-demystified-3c4419b0364a ==> studied from here
 import java.lang.Thread;
 
-import jdk.internal.jshell.tool.resources.version;
+// import jdk.internal.jshell.tool.resources.version;
 
 class EvenThread extends Thread {
     static int x = 2;
@@ -29,8 +29,8 @@ class ass20 {
         odt.setPriority(Thread.MAX_PRIORITY);
         evt.setPriority(Thread.NORM_PRIORITY);
         for (int i = 0; i < 4; i++) {
-        odt.start();
-        evt.start();
+            odt.start();
+            evt.start();
         }
         // odt.start();
         // evt.start();

@@ -16,12 +16,14 @@ public class Array {
             }
         }
         Integer[] a = new Integer[myarr.size()];
+        // looks damn painfull, impromisation needed.
         for (int i = 0; i < a.length; i++) {
             a[i] = myarr.get(i);
         }
         return a;
     }
 
+    // a method that converts list to array regardless of it's wrapper class
     public static int[] arrayFromString(String str) {
         return integerToint(integerArrayFromString(str));
     }
@@ -43,7 +45,7 @@ public class Array {
 
     public static void leftRotateArr(int arr[], int d) {
         // add your code here
-        int g = gcd(arr.length, d);
+        int g = Mathematics.gcd(arr.length, d);
         for (int i = 0; i < g; i++) {
             int temp = arr[i];
             int j = i;
@@ -60,7 +62,7 @@ public class Array {
     }
 
     public static void rightrotate(int arr[], int d) {
-        int g = gcd(arr.length, d);
+        int g = Mathematics.gcd(arr.length, d);
         for (int i = 0; i < g; i++) {
             int temp = arr[arr.length - g + i];
             int j = arr.length - g + i;
@@ -76,11 +78,5 @@ public class Array {
             }
             arr[j] = temp;
         }
-    }
-
-    static int gcd(int no, int div) {
-        if (div == 0)
-            return no;
-        return gcd(div, no % div);
     }
 }
