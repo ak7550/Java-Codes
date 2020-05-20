@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - TakingUserInput",
+            "request": "launch",
+            "mainClass": "TakingUserInput",
+            "projectName": "practise_3f967794"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - abs",
             "request": "launch",
             "mainClass": "abs",
