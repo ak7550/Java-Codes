@@ -1,5 +1,7 @@
 package AkPackage;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.*;
 
 public class Array {
@@ -89,4 +91,23 @@ public class Array {
         }
         return maxFar;
     }
+    
+    public static int[] takeUserInputAsIntegerArray() {
+        BufferedReader bf = new BufferedReader(new java.io.InputStreamReader(System.in));
+        try {
+            String line = bf.readLine();
+            String numbersInString[] = line.split(" ");
+            int[] numbers = new int[numbersInString.length];
+            for (int i = 0; i < numbers.length; i++) {
+                numbers[i] = Integer.parseInt(numbersInString[i]);
+            }
+            return numbers;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return new int[0];
+    }
+    
 }

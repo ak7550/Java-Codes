@@ -1,11 +1,21 @@
-import AkPackage.Ran;
-// all the akpackage testing will be done here
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Arrays;
+
+import AkPackage.Array;
+
+/**
+ * akPackageTest
+ */
 public class akPackageTest {
+
     public static void main(String[] args) {
-        Ran ran=new Ran();
-        System.out.println("Random number in between 50 to 100 is:"+ran.nextInt(50, 100));
-        System.out.println("Random Email is:"+ran.getRandomEmail());
-        System.out.println("Random String is:"+ran.getString());
-        System.out.println("Random String is:"+ran.getString(30,"fbnbnhgyffjlsjflsafasdasdaskshfiusyfjshfksjdhfskhf"));
+        // int T = Array.takeUserInputAsIntegerArray()[0];
+        System.out.println("Enter the String: ");
+        int T = takeUserInputAsIntegerArray()[0];
+        int arr[] = takeUserInputAsIntegerArray();
+        System.out.println(T + "\n" + Arrays.toString(arr));
     }
+
+    
 }
