@@ -79,4 +79,14 @@ public class Array {
             arr[j] = temp;
         }
     }
+
+    public static int kadane(int[] arr) {
+        int curentMax = arr[0], maxFar = arr[0];
+        for (int j = 1; j < arr.length; j++) {
+            int i = arr[j];
+            curentMax = Math.max(i, i + curentMax);
+            maxFar = Math.max(curentMax, maxFar);
+        }
+        return maxFar;
+    }
 }
