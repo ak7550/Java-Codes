@@ -3,29 +3,10 @@ package AkPackage;
 import java.util.*;
 
 public class Array {
-    public static ArrayList<Integer> ArrayListFromString(String str) {
-        String arr[] = str.split(" ");
-        ArrayList<Integer> myarr = new ArrayList<Integer>();
-        for (String string : arr) {
-            try {
-                Integer ii = Integer.parseInt(string);
-                myarr.add(ii);
-            } catch (Exception e) {
-                // TODO: handle exception
-                // System.out.println("Exception avoided. The String is: "+ string);
-            }
-        }
-        return myarr;
-    }
 
     // a method that converts list to array regardless of it's wrapper class
     public static int[] arrayFromString(String str) {
-        return ArrayListFromString(str).stream().mapToInt(Integer::valueOf).toArray();
-    }
-
-    public static Integer[] integerArrayFromString(String str) {
-        ArrayList<Integer> list = ArrayListFromString(str);
-        return list.toArray(new Integer[list.size()]);
+        return InputOutput.ArrayListFromString(str).stream().mapToInt(Integer::valueOf).toArray();
     }
 
     public static Integer[] swapIntegers(Integer arr[], int firstIndex, int secondIndex) {
