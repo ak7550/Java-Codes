@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ArrayListToArray",
+            "request": "launch",
+            "mainClass": "PackageTesting.ArrayListToArray",
+            "projectName": "Java_b6f80386"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - akPackageTest",
             "request": "launch",
             "mainClass": "akPackageTest",

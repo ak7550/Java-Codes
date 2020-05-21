@@ -1,13 +1,11 @@
 package AkPackage;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.*;
 
 public class Array {
-    public static Integer[] integerArrayFromString(String str) {
+    public static ArrayList<Integer> ArrayListFromString(String str) {
         String arr[] = str.split(" ");
-        List<Integer> myarr = new ArrayList<Integer>();
+        ArrayList<Integer> myarr = new ArrayList<Integer>();
         for (String string : arr) {
             try {
                 Integer ii = Integer.parseInt(string);
@@ -17,25 +15,17 @@ public class Array {
                 // System.out.println("Exception avoided. The String is: "+ string);
             }
         }
-        Integer[] a = new Integer[myarr.size()];
-        // looks damn painfull, impromisation needed.
-        for (int i = 0; i < a.length; i++) {
-            a[i] = myarr.get(i);
-        }
-        return a;
+        return myarr;
     }
 
     // a method that converts list to array regardless of it's wrapper class
     public static int[] arrayFromString(String str) {
-        return integerToint(integerArrayFromString(str));
+        return ArrayListFromString(str).stream().mapToInt(Integer::valueOf).toArray();
     }
 
-    public static int[] integerToint(Integer[] arr) {
-        int a[] = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            a[i] = arr[i];
-        }
-        return a;
+    public static Integer[] integerArrayFromString(String str) {
+        ArrayList<Integer> list = ArrayListFromString(str);
+        return list.toArray(new Integer[list.size()]);
     }
 
     public static Integer[] swapIntegers(Integer arr[], int firstIndex, int secondIndex) {
@@ -91,23 +81,8 @@ public class Array {
         }
         return maxFar;
     }
-    
-    public static int[] takeUserInputAsIntegerArray() {
-        BufferedReader bf = new BufferedReader(new java.io.InputStreamReader(System.in));
-        try {
-            String line = bf.readLine();
-            String numbersInString[] = line.split(" ");
-            int[] numbers = new int[numbersInString.length];
-            for (int i = 0; i < numbers.length; i++) {
-                numbers[i] = Integer.parseInt(numbersInString[i]);
-            }
-            return numbers;
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 
-        return new int[0];
-    }
-    
 }
+
+// convert arraylist to array of same wrapper class
+// String[] array = list.toArray(new String[list.size()]);
