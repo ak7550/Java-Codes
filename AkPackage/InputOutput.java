@@ -9,14 +9,14 @@ public class InputOutput {
         return obj.getClass().getSimpleName() + "_testcases.txt";
     }
 
-    //done
+    // done
     public static ArrayList<String> takeCompleteInput() {
         System.out.println("Enter the complete input.\nRest of the stuff will be handled automatically.");
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
         return takeCompleteInput(stdin);
     }
 
-    //done
+    // done
     public static ArrayList<String> takeCompleteInput(BufferedReader stdin) {
         String line;
         ArrayList<String> lines = new ArrayList<>();
@@ -32,18 +32,21 @@ public class InputOutput {
     }
 
     // done
-    public static ArrayList<String> takeCompleteFileInput(Object obj) {
-        return takeCompleteFileInput(getFileName(obj));
+    public static ArrayList<String> takeCompleteInput(Object obj) {
+        return takeCompleteInput(getFileName(obj));
     }
 
     // done
-    public static ArrayList<String> takeCompleteFileInput(String fileName) {
+    public static ArrayList<String> takeCompleteInput(String fileName) {
+        ArrayList<String> lines;
         try {
-            return takeCompleteInput(new BufferedReader(new FileReader(fileName)));
+            lines = takeCompleteInput(new BufferedReader(new FileReader(fileName)));
         } catch (FileNotFoundException e) {
             System.out.println("File: " + fileName + " doesnot exist.");
+            lines = takeCompleteInput();
         }
-        return null;
+        writeTestCaseIntoFile(fileName, lines);
+        return lines;
     }
 
     // done
@@ -77,7 +80,7 @@ public class InputOutput {
         return myarr;
     }
 
-    //done
+    // done
     public static Integer[] integerArrayFromString(String str) {
         ArrayList<Integer> list = ArrayListFromString(str);
         return list.toArray(new Integer[list.size()]);
@@ -88,7 +91,7 @@ public class InputOutput {
         return ArrayListFromString(str).stream().mapToInt(Integer::valueOf).toArray();
     }
 
-    //done
+    // done
     public static void writeTestCaseIntoFile(String fileName, ArrayList<String> strings) {
         File file = new File(fileName);
         if (!file.exists()) {
@@ -120,7 +123,7 @@ public class InputOutput {
         }
     }
 
-    //done
+    // done
     public static void writeTestCaseIntoFile(Object obj, ArrayList<String> strings) {
         writeTestCaseIntoFile(getFileName(obj), strings);
     }

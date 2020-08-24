@@ -63,6 +63,34 @@ public class Array {
         return maxFar;
     }
 
+    public static int[] reverseArr(int arr[]) {
+        for (int i = 0; i < arr.length / 2; i++) {
+            int tem = arr[i];
+            arr[i] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = tem;
+        }
+        System.out.println("After Reversing the Array: " + Arrays.toString(arr));
+        return arr;
+    }
+
+    public static int[] giveAnArray(int size, int bound) {
+        return new Ran().giveAnArray(size, bound);
+    }
+
+    public static int[] giveAnArray(int size) {
+        return giveAnArray(size, 100);
+    }
+
+    public static double findMedian(int arr[]) {
+        int a[] = arr;
+        if (a.length == 0)
+            return -1;
+        Arrays.sort(a);
+        if (a.length % 2 == 0) {
+            return ((double) a[a.length / 2] + (double) a[(a.length / 2) - 1]) / 2;
+        }
+        return a[a.length / 2];
+    }
 }
 
 // convert arraylist to array of same wrapper class
