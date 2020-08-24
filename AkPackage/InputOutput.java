@@ -2,22 +2,26 @@ package AkPackage;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class InputOutput {
 
-    static String getFileName(Object obj) {
+    static String msg = "There are 1 lines in the input.\nLine 1 ( Corresponds to arg 1 ) : An integer array. First number is the size S of the array. Then S numbers follow which indicate the elements in the array.\nFor example, Array: [1, 2, 6] will be written as 3 1 2 6(with proper spaces).\n\nWe are considering all the single input as a array as well, on that note while putting the sinlge input, put the array length as 1 then provide the value.\nFor Example 1 1501 when 1501 is my input to work with.\nAfter providing the complete input leave a empty string or a empty new line to submit all the provided testcases.";
+
+    private static String getFileName(Object obj) {
         return obj.getClass().getSimpleName() + "_testcases.txt";
     }
 
     // done
     public static ArrayList<String> takeCompleteInput() {
-        System.out.println("Enter the complete input.\nRest of the stuff will be handled automatically.");
+        System.out.println(msg);
+        System.out.println("Enter the Input.\nEverything will be handled automaticlly");
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
         return takeCompleteInput(stdin);
     }
 
     // done
-    public static ArrayList<String> takeCompleteInput(BufferedReader stdin) {
+    private static ArrayList<String> takeCompleteInput(BufferedReader stdin) {
         String line;
         ArrayList<String> lines = new ArrayList<>();
         try {
@@ -25,7 +29,6 @@ public class InputOutput {
                 lines.add(line);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return lines;
@@ -45,21 +48,35 @@ public class InputOutput {
             System.out.println("File: " + fileName + " doesnot exist.");
             lines = takeCompleteInput();
         }
+        System.out.println("Do you have more testcases ? (y/n): ");
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        String decision;
+        try {
+            decision = stdin.readLine();
+            if (decision.equals("y") || decision.equals("Y")) {
+                addANewTestCases(lines);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         writeTestCaseIntoFile(fileName, lines);
         return lines;
     }
 
     // done
-    public static void addANewTestCase(ArrayList<String> strings) {
-        System.out.println("Enter the new test case: ");
+    private static void addANewTestCases(ArrayList<String> strings) {
+        System.out.println(msg);
+        System.out.println("Enter the new test cases: ");
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
         try {
-            strings.add(stdin.readLine());
-            // if works, go for the next line.
             Integer numberOfTestCases = Integer.parseInt(strings.get(0));
-            strings.set(0, Integer.toString(++numberOfTestCases));
+            String line;
+            while ((line = stdin.readLine()) != null && line.length() != 0) {
+                strings.add(line);
+                numberOfTestCases++;
+            }
+            strings.set(0, Integer.toString(numberOfTestCases));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -73,11 +90,28 @@ public class InputOutput {
                 Integer ii = Integer.parseInt(string);
                 myarr.add(ii);
             } catch (Exception e) {
-                // TODO: handle exception
                 // System.out.println("Exception avoided. The String is: "+ string);
             }
         }
         return myarr;
+    }
+
+    public static ArrayList<Integer> randomIntegerArrayList(int length, int bound) {
+        Random ran = new Random();
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for (int i = 0; i < length; i++) {
+            arr.add(ran.nextInt(bound));
+        }
+        return arr;
+    }
+
+    public static ArrayList<Integer> randomIntegerArrayList(int length) {
+        return randomIntegerArrayList(length, 100);
+    }
+
+    public static Integer[] randomIntegerArray(int length, int bound) {
+        ArrayList<Integer> list = randomIntegerArrayList(length, bound);
+        return list.toArray(new Integer[list.size()]);
     }
 
     // done
@@ -86,19 +120,30 @@ public class InputOutput {
         return list.toArray(new Integer[list.size()]);
     }
 
+    public static Integer[] randomIntegerArray(int length) {
+        return randomIntegerArray(length, 100);
+    }
+
+    public static int[] randomIntArray(int length, int bound) {
+        return randomIntegerArrayList(length, bound).stream().mapToInt(Integer::valueOf).toArray();
+    }
+
+    public static int[] randomIntArray(int length) {
+        return randomIntArray(length, 100);
+    }
+
     // done
     public static int[] arrayFromString(String str) {
         return ArrayListFromString(str).stream().mapToInt(Integer::valueOf).toArray();
     }
 
     // done
-    public static void writeTestCaseIntoFile(String fileName, ArrayList<String> strings) {
+    private static void writeTestCaseIntoFile(String fileName, ArrayList<String> strings) {
         File file = new File(fileName);
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -110,7 +155,6 @@ public class InputOutput {
                 try {
                     writer.write(string + "\n");
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
 
@@ -118,13 +162,7 @@ public class InputOutput {
             writer.close();
             System.out.println("All the information has been stored into " + fileName);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-
-    // done
-    public static void writeTestCaseIntoFile(Object obj, ArrayList<String> strings) {
-        writeTestCaseIntoFile(getFileName(obj), strings);
     }
 }
