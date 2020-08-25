@@ -4,10 +4,16 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+class DualDataStructure {
+    ArrayList<Integer> arr;
+    String str;
+}
+
 public class InputOutput {
 
-    static String msg = "There are 1 lines in the input.\nLine 1 ( Corresponds to arg 1 ) : An integer array. First number is the size S of the array. Then S numbers follow which indicate the elements in the array.\nFor example, Array: [1, 2, 6] will be written as 3 1 2 6(with proper spaces).\n\nWe are considering all the single input as a array as well, on that note while putting the sinlge input, put the array length as 1 then provide the value.\nFor Example 1 1501 when 1501 is my input to work with.\nAfter providing the complete input leave a empty string or a empty new line to submit all the provided testcases.";
+    static String msg = "There are 1 lines in the input.\nLine 1 ( Corresponds to arg 1 ) : An integer array. First number is the size S of the array. Then in the next line S numbers follow which indicate the elements in the array.\nFor example, Array: [1, 2, 6] will be written as 3 \n(new line) 1 2 6(with proper spaces).\n\nFor take a single number input just pass them one by one in a single line, each input in one line.";
 
+    //returns the filename as a string
     private static String getFileName(Object obj) {
         return obj.getClass().getSimpleName() + "_testcases.txt";
     }
@@ -15,8 +21,25 @@ public class InputOutput {
     // done
     public static ArrayList<String> takeCompleteInput() {
         System.out.println(msg);
-        System.out.println("Enter the Input.\nEverything will be handled automaticlly");
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Do you wanna take random input?(y/n) ");
+        String decision;
+        try {
+            decision = stdin.readLine();
+            if (decision.equals("y") || decision.equals("Y")) {
+                ArrayList<String> lines = new ArrayList<>();
+                System.out.print("Length of the array: ");
+                String legnth = stdin.readLine();
+                String arr = stringArrayOfRandomInteger(Integer.parseInt(legnth), Integer.parseInt(legnth)).str;
+                lines.add(legnth);
+                lines.add(arr);
+                lines.add("Above one is a random input.");
+                return lines;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Enter the Input.\nEverything will be handled automaticlly");
         return takeCompleteInput(stdin);
     }
 
@@ -25,10 +48,13 @@ public class InputOutput {
         String line;
         ArrayList<String> lines = new ArrayList<>();
         try {
+
             while ((line = stdin.readLine()) != null && line.length() != 0) {
                 lines.add(line);
             }
-        } catch (IOException e) {
+        } catch (
+
+        IOException e) {
             e.printStackTrace();
         }
         return lines;
@@ -44,11 +70,12 @@ public class InputOutput {
         ArrayList<String> lines;
         try {
             lines = takeCompleteInput(new BufferedReader(new FileReader(fileName)));
+            System.out.println("Inputs are taken from " + fileName);
         } catch (FileNotFoundException e) {
             System.out.println("File: " + fileName + " doesnot exist.");
             lines = takeCompleteInput();
         }
-        System.out.println("Do you have more testcases ? (y/n): ");
+        System.out.print("Do you have more testcases ? (y/n): ");
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
         String decision;
         try {
@@ -69,13 +96,10 @@ public class InputOutput {
         System.out.println("Enter the new test cases: ");
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
         try {
-            Integer numberOfTestCases = Integer.parseInt(strings.get(0));
             String line;
             while ((line = stdin.readLine()) != null && line.length() != 0) {
                 strings.add(line);
-                numberOfTestCases++;
             }
-            strings.set(0, Integer.toString(numberOfTestCases));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,16 +121,28 @@ public class InputOutput {
     }
 
     public static ArrayList<Integer> randomIntegerArrayList(int length, int bound) {
+        return stringArrayOfRandomInteger(length, bound).arr;
+    }
+
+    // try to modify any one of them.
+    private static DualDataStructure stringArrayOfRandomInteger(int length, int bound) {
         Random ran = new Random();
+        String str = "";
         ArrayList<Integer> arr = new ArrayList<Integer>();
+        DualDataStructure ddsObject = new DualDataStructure();
         for (int i = 0; i < length; i++) {
-            arr.add(ran.nextInt(bound));
+            int randomInteger = ran.nextInt(bound);
+            str += " " + randomInteger;
+            arr.add(randomInteger);
         }
-        return arr;
+        System.out.println("Input taken: " + str);
+        ddsObject.str = str;
+        ddsObject.arr = arr;
+        return ddsObject;
     }
 
     public static ArrayList<Integer> randomIntegerArrayList(int length) {
-        return randomIntegerArrayList(length, 100);
+        return randomIntegerArrayList(length, length);
     }
 
     public static Integer[] randomIntegerArray(int length, int bound) {
@@ -121,7 +157,7 @@ public class InputOutput {
     }
 
     public static Integer[] randomIntegerArray(int length) {
-        return randomIntegerArray(length, 100);
+        return randomIntegerArray(length, length);
     }
 
     public static int[] randomIntArray(int length, int bound) {
@@ -129,7 +165,7 @@ public class InputOutput {
     }
 
     public static int[] randomIntArray(int length) {
-        return randomIntArray(length, 100);
+        return randomIntArray(length, length);
     }
 
     // done
@@ -164,5 +200,9 @@ public class InputOutput {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void writeTestCaseIntoFile(Object obj, ArrayList<String> strings) {
+        writeTestCaseIntoFile(getFileName(obj), strings);
     }
 }
