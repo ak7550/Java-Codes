@@ -19,7 +19,7 @@ public class InputOutput {
     }
 
     // done
-    public static ArrayList<String> takeCompleteInput() {
+    public static ArrayList<String> takeCompleteInput() { // when you don't want to save the input in a file.
         System.out.println(msg);
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Do you wanna take random input?(y/n) ");
@@ -30,10 +30,8 @@ public class InputOutput {
                 ArrayList<String> lines = new ArrayList<>();
                 System.out.print("Length of the array: ");
                 String legnth = stdin.readLine();
-                String arr = stringArrayOfRandomInteger(Integer.parseInt(legnth), Integer.parseInt(legnth)).str;
-                lines.add(legnth);
-                lines.add(arr);
-                lines.add("Above one is a random input.");
+                String arr = stringArrayOfRandomInteger(Integer.parseInt(legnth), Integer.parseInt(legnth)).str.trim();
+                lines.add(arr + " This one is a random input."); // take input for this
                 return lines;
             }
         } catch (IOException e) {
@@ -48,13 +46,10 @@ public class InputOutput {
         String line;
         ArrayList<String> lines = new ArrayList<>();
         try {
-
             while ((line = stdin.readLine()) != null && line.length() != 0) {
                 lines.add(line);
             }
-        } catch (
-
-        IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return lines;
@@ -98,7 +93,7 @@ public class InputOutput {
         try {
             String line;
             while ((line = stdin.readLine()) != null && line.length() != 0) {
-                strings.add(line);
+                strings.add(line.trim());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -111,7 +106,7 @@ public class InputOutput {
         ArrayList<Integer> myarr = new ArrayList<Integer>();
         for (String string : arr) {
             try {
-                Integer ii = Integer.parseInt(string);
+                Integer ii = Integer.parseInt(string.trim());
                 myarr.add(ii);
             } catch (Exception e) {
                 // System.out.println("Exception avoided. The String is: "+ string);
@@ -135,7 +130,6 @@ public class InputOutput {
             str += " " + randomInteger;
             arr.add(randomInteger);
         }
-        System.out.println("Input taken: " + str);
         ddsObject.str = str;
         ddsObject.arr = arr;
         return ddsObject;
@@ -189,11 +183,10 @@ public class InputOutput {
             writer = new FileWriter(file);
             for (String string : strings) {
                 try {
-                    writer.write(string + "\n");
+                    writer.write(string.trim() + "\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
             writer.close();
             System.out.println("All the information has been stored into " + fileName);

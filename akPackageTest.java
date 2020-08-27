@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-import AkPackage.Array;
+import java.util.Arrays;
+
 import AkPackage.InputOutput;
 
 /**
@@ -8,14 +9,10 @@ import AkPackage.InputOutput;
 public class akPackageTest {
 
     public static void main(String[] args) throws Exception {
-        ArrayList<String> arr = InputOutput.takeCompleteInput(new akPackageTest());
-        while (!arr.isEmpty()) {
-            int length = Integer.parseInt(arr.remove(0));
-            int[] a = InputOutput.arrayFromString(arr.remove(0));
-            System.out.println(a);
-            int val = Array.kadane(a);
-            System.out.println(val);
-            
+        ArrayList<String> lines = InputOutput.takeCompleteInput(new akPackageTest());
+        while (!lines.isEmpty()) {
+            int input[] = InputOutput.arrayFromString(lines.remove(0));
+            System.out.println(Arrays.toString(input));
         }
     }
 }
