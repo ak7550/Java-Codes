@@ -17,7 +17,6 @@ class AddThemUp extends java.lang.Thread {
             try {
                 fct.join();
             } catch (final InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             System.out.println("Current state of fct is: " + fct.isAlive());
@@ -37,7 +36,6 @@ class ass21 {
         try {
             adt.join();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println("adt state is: "+adt.isAlive());

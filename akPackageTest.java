@@ -1,7 +1,8 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import AkPackage.InputOutput;
+// import AkPackage.Node;
+import AkPackage.Tree;
 
 /**
  * akPackageTest
@@ -11,8 +12,12 @@ public class akPackageTest {
     public static void main(String[] args) throws Exception {
         ArrayList<String> lines = InputOutput.takeCompleteInput(new akPackageTest());
         while (!lines.isEmpty()) {
-            int input[] = InputOutput.arrayFromString(lines.remove(0));
-            System.out.println(Arrays.toString(input));
+            Tree root = Tree.createBST(InputOutput.ArrayListFromString(lines.remove(0)));
+            Tree.inorderTraversal(root);
+            System.out.println();
+            root = Tree.insertInToBST(root, 4);
+            root = Tree.insertInToBST(root, 5);
+            Tree.inorderTraversal(root);
         }
     }
 }

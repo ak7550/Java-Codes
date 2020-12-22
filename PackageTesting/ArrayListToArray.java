@@ -37,7 +37,7 @@ public class ArrayListToArray {
 
         // If you want a `primitive` type array
         int[] arr = list.stream().mapToInt(Integer::valueOf).toArray();
-
+        System.out.println(Arrays.toString(wrapperArr));    
         System.out.println(Arrays.toString(arr));
     }
 }

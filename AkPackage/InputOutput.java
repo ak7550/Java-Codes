@@ -1,8 +1,7 @@
 package AkPackage;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 class DualDataStructure {
     ArrayList<Integer> arr;
@@ -13,7 +12,7 @@ public class InputOutput {
 
     static String msg = "There are 1 lines in the input.\nLine 1 ( Corresponds to arg 1 ) : An integer array. First number is the size S of the array. Then in the next line S numbers follow which indicate the elements in the array.\nFor example, Array: [1, 2, 6] will be written as 3 \n(new line) 1 2 6(with proper spaces).\n\nFor take a single number input just pass them one by one in a single line, each input in one line.";
 
-    //returns the filename as a string
+    // returns the filename as a string
     private static String getFileName(Object obj) {
         return obj.getClass().getSimpleName() + "_testcases.txt";
     }
@@ -31,7 +30,7 @@ public class InputOutput {
                 System.out.print("Length of the array: ");
                 String legnth = stdin.readLine();
                 String arr = stringArrayOfRandomInteger(Integer.parseInt(legnth), Integer.parseInt(legnth)).str.trim();
-                lines.add(arr + " This one is a random input."); // take input for this
+                lines.add(0, arr + " This one is a random input."); // take input for this
                 return lines;
             }
         } catch (IOException e) {
@@ -197,5 +196,29 @@ public class InputOutput {
 
     public static void writeTestCaseIntoFile(Object obj, ArrayList<String> strings) {
         writeTestCaseIntoFile(getFileName(obj), strings);
+    }
+
+    public static Tree createBinaryTree(ArrayList<Integer> arr) {
+        return Tree.createBinaryTree(arr, null);
+    }
+
+    public static Tree createBinaryTree(ArrayList<Integer> arr, Tree root) {
+        return Tree.createBinaryTree(arr, root);
+    }
+
+    public static Node getLinkedList(ArrayList<Integer> arr) {
+        return Node.getLinkedList(arr);
+    }
+
+    public static Node getLinkedList(String str) {
+        return Node.getLinkedList(str);
+    }
+
+    public static Node getDoublyLinkedList(String str) {
+        return Node.getDoublyLinkedList(str);
+    }
+
+    public static Node getDoublyLinkedList(ArrayList<Integer> str) {
+        return Node.getDoublyLinkedList(str);
     }
 }

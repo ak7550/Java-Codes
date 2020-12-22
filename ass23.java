@@ -33,7 +33,6 @@ class ass23 {
         try {
             evt.join();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println("Result is: " + (odt.sum + evt.sum));
