@@ -85,6 +85,8 @@ public class Tree {
         // when root is null
         if (parent == null)
             return new Tree(x);
+        else if (parent.data == x)
+            return root;
         else if (parent.data < x)
             parent.right = new Tree(x);
         else

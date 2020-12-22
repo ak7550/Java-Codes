@@ -221,4 +221,11 @@ public class InputOutput {
     public static Node getDoublyLinkedList(ArrayList<Integer> str) {
         return Node.getDoublyLinkedList(str);
     }
+
+    public static Tree createBST(ArrayList<Integer> arr) {
+        return Tree.createBST(arr);
+    }
+    public static Tree createBST(ArrayList<Integer> arr, Tree root) {
+        return Tree.createBST(arr, root);
+    }
 }
