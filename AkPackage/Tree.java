@@ -11,22 +11,36 @@ public class Tree {
         left = right = null;
     }
 
-    public static void preorderTraversal(Tree root) {
-        if (root == null)
-            return;
-        System.out.print(root.data + " ");
-        preorderTraversal(root.left);
-        preorderTraversal(root.right);
+    public static ArrayList<Integer> preorderTraversal(Tree root) {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        preorderTraversal(root, arr);
+        return arr;
     }
 
-    public static void levelorderTraversal(Tree root) {
-        ArrayDeque<Tree> ad = new ArrayDeque<>();
+    private static void preorderTraversal(Tree root, ArrayList<Integer> arr) {
         if (root == null)
             return;
+        arr.add(root.data);
+        preorderTraversal(root.left, arr);
+        preorderTraversal(root.right, arr);
+    }
+
+
+
+    public static ArrayList<Integer> levelorderTraversal(Tree root) {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        levelorderTraversal(root, arr);
+        return arr;
+    }
+
+    private static void levelorderTraversal(Tree root, ArrayList<Integer> arr) {
+        ArrayDeque<Tree> ad = new ArrayDeque<>();
+        if (root == null)
+            return ;
         ad.add(root);
         while (!ad.isEmpty()) {
             Tree temp = ad.poll();
-            System.out.print(temp.data + " ");
+            arr.add(temp.data);
             if (temp.left != null)
                 ad.add(temp.left);
             if (temp.right != null)
@@ -34,11 +48,18 @@ public class Tree {
         }
     }
 
-    public static void inorderTraversal(Tree root) {
+    public static ArrayList<Integer> inorderTraversal(Tree root) {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        inorderTraversal(root, arr);
+        return arr;
+    }
+
+
+    private static void inorderTraversal(Tree root, ArrayList<Integer> arr) {
         if (root == null)
             return;
         inorderTraversal(root.left);
-        System.out.print(root.data + " ");
+        arr.add(root.data);
         inorderTraversal(root.right);
     }
 

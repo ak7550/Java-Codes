@@ -21,6 +21,8 @@ public class InputOutput {
     public static ArrayList<String> takeCompleteInput() { // when you don't want to save the input in a file.
         System.out.println(msg);
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+        // this part is to take random input
         System.out.print("Do you wanna take random input?(y/n) ");
         String decision;
         try {
@@ -40,7 +42,7 @@ public class InputOutput {
         return takeCompleteInput(stdin);
     }
 
-    // done
+    // done --> user is providing input by himself or may read it from the existing file.
     private static ArrayList<String> takeCompleteInput(BufferedReader stdin) {
         String line;
         ArrayList<String> lines = new ArrayList<>();
@@ -59,14 +61,14 @@ public class InputOutput {
         return takeCompleteInput(getFileName(obj));
     }
 
-    // done
+    // done --> it reads data from the existing file --> the problem zone as well
     public static ArrayList<String> takeCompleteInput(String fileName) {
         ArrayList<String> lines;
         try {
             lines = takeCompleteInput(new BufferedReader(new FileReader(fileName)));
             System.out.println("Inputs are taken from " + fileName);
         } catch (FileNotFoundException e) {
-            System.out.println("File: " + fileName + " doesnot exist.");
+            System.out.println("File: " + fileName + " does not exist.");
             lines = takeCompleteInput();
         }
         System.out.print("Do you have more testcases ? (y/n): ");
@@ -168,18 +170,11 @@ public class InputOutput {
 
     // done
     private static void writeTestCaseIntoFile(String fileName, ArrayList<String> strings) {
-        File file = new File(fileName);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        // File file = new File(fileName);
 
         FileWriter writer;
         try {
-            writer = new FileWriter(file);
+            writer = new FileWriter(fileName);
             for (String string : strings) {
                 try {
                     writer.write(string.trim() + "\n");
