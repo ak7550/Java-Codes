@@ -17,7 +17,7 @@ public class InputOutput {
         return obj.getClass().getSimpleName() + "_testcases.txt";
     }
 
-    // done
+    // ..done
     public static ArrayList<String> takeCompleteInput() { // when you don't want to save the input in a file.
         System.out.println(msg);
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
@@ -42,7 +42,8 @@ public class InputOutput {
         return takeCompleteInput(stdin);
     }
 
-    // done --> user is providing input by himself or may read it from the existing file.
+    // .. ..done --> user is providing input by himself or may read it from the
+    // existing file.
     private static ArrayList<String> takeCompleteInput(BufferedReader stdin) {
         String line;
         ArrayList<String> lines = new ArrayList<>();
@@ -56,12 +57,12 @@ public class InputOutput {
         return lines;
     }
 
-    // done
+    // ..done
     public static ArrayList<String> takeCompleteInput(Object obj) {
         return takeCompleteInput(getFileName(obj));
     }
 
-    // done --> it reads data from the existing file --> the problem zone as well
+    // ..done --> it reads data from the existing file --> the problem zone as well
     public static ArrayList<String> takeCompleteInput(String fileName) {
         ArrayList<String> lines;
         try {
@@ -86,7 +87,7 @@ public class InputOutput {
         return lines;
     }
 
-    // done
+    // ..done
     private static void addANewTestCases(ArrayList<String> strings) {
         System.out.println(msg);
         System.out.println("Enter the new test cases: ");
@@ -101,7 +102,7 @@ public class InputOutput {
         }
     }
 
-    // done
+    // ..done
     public static ArrayList<Integer> ArrayListFromString(String str) {
         String arr[] = str.split(" ");
         ArrayList<Integer> myarr = new ArrayList<Integer>();
@@ -145,7 +146,7 @@ public class InputOutput {
         return list.toArray(new Integer[list.size()]);
     }
 
-    // done
+    // ..done
     public static Integer[] integerArrayFromString(String str) {
         ArrayList<Integer> list = ArrayListFromString(str);
         return list.toArray(new Integer[list.size()]);
@@ -163,12 +164,12 @@ public class InputOutput {
         return randomIntArray(length, length);
     }
 
-    // done
+    // ..done
     public static int[] arrayFromString(String str) {
         return ArrayListFromString(str).stream().mapToInt(Integer::valueOf).toArray();
     }
 
-    // done
+    // ..done
     private static void writeTestCaseIntoFile(String fileName, ArrayList<String> strings) {
         // File file = new File(fileName);
 
@@ -220,6 +221,7 @@ public class InputOutput {
     public static Tree createBST(ArrayList<Integer> arr) {
         return Tree.createBST(arr);
     }
+
     public static Tree createBST(ArrayList<Integer> arr, Tree root) {
         return Tree.createBST(arr, root);
     }
