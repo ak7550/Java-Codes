@@ -4,20 +4,44 @@ import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
 
 public class Graph {
-    /**
-     * InnerGraph
-     */
+    
     public static class InnerGraph<E> {
 
         public int vertices;
-        public ArrayList<ArrayList<E>> adjacencyList=null;
+        public ArrayList<ArrayList<E>> adjacencyList = null;
 
         InnerGraph(int v, ArrayList<ArrayList<E>> adj) {
             vertices = v;
             adjacencyList = adj;
         }
 
-        
+    }
+
+    public static class Edge implements Comparable<Edge> {
+        int start, end, weight;
+
+        public Edge(int s, int e, int w) {
+            start = s;
+            end = e;
+            weight = w;
+        }
+
+        @Override
+        public int compareTo(Edge e) {
+            return weight - e.weight;
+        }
+    }
+
+    public static Edge[] getEdges(ArrayList<String> lines) {
+        int start[] = InputOutput.arrayFromString(lines.remove(0)),
+            end[] = InputOutput.arrayFromString(lines.remove(0)),
+                weight[] = InputOutput.arrayFromString(lines.remove(0));
+
+        Edge[] edges = new Edge[start.length];
+        for (int i = 0; i < edges.length; i++)
+            edges[i] = new Edge(start[i], end[i], weight[i]);
+
+        return edges;
     }
 
     public static InnerGraph<Integer> takeAdjacencyListInputDIRECTED(ArrayList<String> lines) {
@@ -52,8 +76,8 @@ public class Graph {
         return new InnerGraph<>(V, adj);
     }
 
-    
-    
+
+
     // fix it accordingly
     public static InnerGraph<SimpleEntry<Integer, Integer>> takeAdjacencyListInputUNDIRECTEDWEIGHTED(ArrayList<String> lines) {
         String line[] = lines.remove(0).split(" ");
