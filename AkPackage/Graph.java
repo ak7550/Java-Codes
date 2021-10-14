@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
 
 public class Graph {
-    
+
     public static class InnerGraph<E> {
 
         public int vertices;
@@ -29,6 +29,11 @@ public class Graph {
         @Override
         public int compareTo(Edge e) {
             return weight - e.weight;
+        }
+
+        @Override
+        public String toString() {
+            return String.format(start + "---" + weight + "--->" + end);
         }
     }
 
