@@ -52,7 +52,8 @@ public class FenwickTree {
 
     //-> sum in the range of [start, end]
     public int getRangeQuery(int start, int end) {
-        return start == 0 ? getRangeQuery(end) : getRangeQuery(end) - getRangeQuery(start - 1);
+        return start <= end ?
+                start == 0 ? getRangeQuery(end) : getRangeQuery(end) - getRangeQuery(start - 1) : -1;
     }
 
     public int getRangeQuery(int index) {
